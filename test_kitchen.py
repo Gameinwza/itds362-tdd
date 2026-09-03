@@ -54,3 +54,10 @@ def test_addition_across_units():
     converter.add_rate("oz", "g", 28.35)
     total = grams(200).plus(ounces(1))
     assert converter.reduce(total, "g") == grams(228.35)
+
+
+def test_multiply_a_sum():
+    converter = Converter()
+    converter.add_rate("oz", "g", 28.35)
+    total = grams(200).plus(ounces(1)).times(2)
+    assert converter.reduce(total, "g") == grams(456.70)
