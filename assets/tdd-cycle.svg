@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="280" viewBox="0 0 900 280" role="img" aria-labelledby="title desc">
+  <title id="title">Animated TDD cycle</title>
+  <desc id="desc">Red, Green, and Refactor stages light up in sequence while a dot travels around the cycle.</desc>
+  <defs>
+    <filter id="glow"><feGaussianBlur stdDeviation="7" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#081226"/><stop offset="1" stop-color="#111d38"/></linearGradient>
+    <path id="route" d="M225 140 C310 18 590 18 675 140 C590 262 310 262 225 140Z"/>
+  </defs>
+  <style>
+    .card { opacity:.42; animation:light 6s infinite; }
+    .green { animation-delay:2s; }
+    .blue { animation-delay:4s; }
+    .label { font:700 25px Arial,sans-serif; fill:#fff; text-anchor:middle; }
+    .hint { font:15px Arial,sans-serif; fill:#a8b3cf; text-anchor:middle; }
+    @keyframes light { 0%,30% { opacity:1; filter:url(#glow) } 33%,100% { opacity:.42; filter:none } }
+  </style>
+  <rect width="900" height="280" rx="28" fill="url(#bg)"/>
+  <use href="#route" fill="none" stroke="#34415f" stroke-width="4" stroke-dasharray="10 12"/>
+  <g class="card">
+    <circle cx="225" cy="140" r="72" fill="#e63946"/>
+    <text class="label" x="225" y="137">RED</text><text class="hint" x="225" y="164">Write a failing test</text>
+  </g>
+  <g class="card green">
+    <circle cx="450" cy="65" r="72" fill="#20a65a"/>
+    <text class="label" x="450" y="62">GREEN</text><text class="hint" x="450" y="89">Make it pass</text>
+  </g>
+  <g class="card blue">
+    <circle cx="675" cy="140" r="72" fill="#3478f6"/>
+    <text class="label" x="675" y="137">REFACTOR</text><text class="hint" x="675" y="164">Improve safely</text>
+  </g>
+  <circle r="9" fill="#ffd166" filter="url(#glow)">
+    <animateMotion dur="6s" repeatCount="indefinite"><mpath href="#route"/></animateMotion>
+  </circle>
+  <text x="450" y="252" class="hint">Repeat in small, verified steps</text>
+</svg>
