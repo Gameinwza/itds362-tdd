@@ -6,6 +6,12 @@ class Quantity:
     def times(self, multiplier):
         return Quantity(self.amount * multiplier, self.unit)
 
+    def plus(self, other):
+        return Sum(self, other)
+
+    def reduce(self, unit, converter):
+        return converter.convert(self, unit)
+
     def __eq__(self, other):
         return (
             isinstance(other, Quantity)
@@ -15,3 +21,22 @@ class Quantity:
 
     def __repr__(self):
         return f"Quantity({self.amount}, {self.unit!r})"
+
+
+class Sum:
+    def __init__(self, left, right):
+        self.left = left
+        self.right = right
+
+    def reduce(self, unit, converter):
+        left = converter.reduce(self.left, unit)
+        right = converter.reduce(self.right, unit)
+        return Quantity(left.amount + right.amount, unit)
+
+
+class Converter:
+    def reduce(self, expression, unit):
+        return expression.reduce(unit, self)
+
+    def convert(self, quantity, unit):
+        return Quantity(quantity.amount, unit)
