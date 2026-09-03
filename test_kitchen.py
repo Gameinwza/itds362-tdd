@@ -7,7 +7,7 @@
 # [ ] 200 g + 1 oz can be reduced to grams using an exchange rate
 # [ ] (200 g + 1 oz) x 2
 
-from kitchen import Quantity
+from kitchen import Converter, Quantity
 
 
 def grams(amount):
@@ -41,3 +41,9 @@ def test_equality():
 
 def test_grams_are_not_ounces():
     assert grams(1) != ounces(1)
+
+
+def test_simple_addition():
+    total = grams(200).plus(grams(300))
+    converter = Converter()
+    assert converter.reduce(total, "g") == grams(500)
