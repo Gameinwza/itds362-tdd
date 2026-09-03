@@ -35,8 +35,15 @@ class Sum:
 
 
 class Converter:
+    def __init__(self):
+        self.rates = {}
+
+    def add_rate(self, source, target, rate):
+        self.rates[source, target] = rate
+
     def reduce(self, expression, unit):
         return expression.reduce(unit, self)
 
     def convert(self, quantity, unit):
-        return Quantity(quantity.amount, unit)
+        rate = 1 if quantity.unit == unit else self.rates[quantity.unit, unit]
+        return Quantity(quantity.amount * rate, unit)
