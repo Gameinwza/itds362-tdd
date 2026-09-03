@@ -1,11 +1,11 @@
 # Test list
-# [ ] 200 g x 3 = 600 g
-# [ ] Multiplication does not change the original quantity
-# [ ] Quantities with the same amount and unit are equal
-# [ ] 1 oz is not equal to 1 g
-# [ ] 200 g + 300 g = 500 g
-# [ ] 200 g + 1 oz can be reduced to grams using an exchange rate
-# [ ] (200 g + 1 oz) x 2
+# [x] 200 g x 3 = 600 g
+# [x] Multiplication does not change the original quantity
+# [x] Quantities with the same amount and unit are equal
+# [x] 1 oz is not equal to 1 g
+# [x] 200 g + 300 g = 500 g
+# [x] 200 g + 1 oz can be reduced to grams using an exchange rate
+# [x] (200 g + 1 oz) x 2
 
 from kitchen import Converter, Quantity
 
@@ -32,6 +32,7 @@ def test_multiplication_returns_a_new_quantity():
     flour = grams(200)
     assert flour.times(3) == grams(600)
     assert flour.times(2) == grams(400)
+    assert flour == grams(200)
 
 
 def test_equality():
